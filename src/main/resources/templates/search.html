@@ -13,7 +13,7 @@
 
     <form th:action="@{/search/results}" method = "post">
         <h2>Search by:</h2>
-
+<!--this should stay after searches but doesnt?-->
         <p>
             <span th:each="column : ${columns}">
                 <input
@@ -35,7 +35,7 @@
         <input type="submit" value="Search" />
     </form>
 
-    <!-- TODO #4 - Loop over the search results to display all job fields. -->
+    <!-- TODO #4 - Loop over the search results to display all job fields.  move to fragments and update -->
     <table th:each="job : ${jobs}" class="job-listing">
         <tr>
             <td th:text="ID"></td>
