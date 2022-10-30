@@ -33,8 +33,8 @@ public class SearchController {
     @PostMapping(value = "results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         ArrayList<Job> jobs = new ArrayList<>();
-        model.addAttribute("columns", columnChoices);//should add the search bar i believe but doesnt?
-        if(searchType.equals("all") && searchTerm.equals("")){//changing && to || makes task 4 test fail but test 3 pass. all search no longer functions if || applied, only displays all jobs no matter what is searched
+        if(searchTerm.equals("all")){//changing && to || makes task 4 test fail but test 3 pass. all search no longer functions if || applied, only displays all jobs no matter what is searched
+
             jobs= JobData.findAll();
             model.addAttribute("title", "All Jobs");
         }
@@ -43,6 +43,7 @@ public class SearchController {
             model.addAttribute("title", "Jobs with " + ListController.columnChoices.get(searchType) + ": " + searchTerm);
         }
         model.addAttribute("jobs", jobs);
+        model.addAttribute("columns", columnChoices);//should add the search bar i believe but doesnt?
         return "list-jobs";
     }
 }
